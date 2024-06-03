@@ -15,12 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.ninesevenclub.ludumranking.presentation.ui.theme.LudumRanKingTheme
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
+import com.ninesevenclub.ludumranking.presentation.views.components.LRTopBar
 import com.ninesevenclub.ludumranking.utils.navigation.NavManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val LRViewModel by viewModels<LRViewModel>()
+    private val viewModel by viewModels<LRViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,11 +29,17 @@ class MainActivity : ComponentActivity() {
             LudumRanKingTheme(darkTheme = false) {
                 val navController = rememberNavController()
                 Scaffold(
-                    
+                    topBar = {
+                        LRTopBar(
+                            navToSettings = {},
+                            navToSearch = {}
+                        )
+                    }
                 ) { paddingValues ->
                     NavManager(
                         navController = navController,
-                        paddingValues = paddingValues
+                        paddingValues = paddingValues,
+                        viewModel = viewModel
                     )
                 }
             }
