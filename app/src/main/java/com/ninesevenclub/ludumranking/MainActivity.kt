@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LudumRanKingTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Na
+
                 }
             }
         }
