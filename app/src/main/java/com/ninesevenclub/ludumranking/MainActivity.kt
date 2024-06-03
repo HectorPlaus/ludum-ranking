@@ -16,7 +16,9 @@ import androidx.navigation.compose.rememberNavController
 import com.ninesevenclub.ludumranking.presentation.ui.theme.LudumRanKingTheme
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
 import com.ninesevenclub.ludumranking.utils.navigation.NavManager
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val LRViewModel by viewModels<LRViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
