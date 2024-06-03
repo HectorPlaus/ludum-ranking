@@ -77,6 +77,6 @@ dependencies {
     kapt ("com.google.dagger:hilt-compiler:2.48.1")
 
     //Retrofit
-    implementation("com.squareup.retrofit:retrofit:1.2.1")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
 
 }
