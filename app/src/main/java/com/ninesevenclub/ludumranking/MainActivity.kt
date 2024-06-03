@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.ninesevenclub.ludumranking.presentation.ui.theme.LudumRanKingTheme
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
+import com.ninesevenclub.ludumranking.presentation.views.components.LRTopBar
 import com.ninesevenclub.ludumranking.utils.navigation.NavManager
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +27,12 @@ class MainActivity : ComponentActivity() {
             LudumRanKingTheme(darkTheme = false) {
                 val navController = rememberNavController()
                 Scaffold(
-
+                    topBar = {
+                        LRTopBar(
+                            navToSettings = {},
+                            navToSearch = {}
+                        )
+                    }
                 ) { paddingValues ->
                     NavManager(
                         navController = navController,
