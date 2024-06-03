@@ -18,7 +18,7 @@ import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
 import com.ninesevenclub.ludumranking.utils.navigation.NavManager
 
 class MainActivity : ComponentActivity() {
-    private val LRViewModel by viewModels<LRViewModel>()
+    private val viewModel by viewModels<LRViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,11 +26,12 @@ class MainActivity : ComponentActivity() {
             LudumRanKingTheme(darkTheme = false) {
                 val navController = rememberNavController()
                 Scaffold(
-                    
+
                 ) { paddingValues ->
                     NavManager(
                         navController = navController,
-                        paddingValues = paddingValues
+                        paddingValues = paddingValues,
+                        viewModel = viewModel
                     )
                 }
             }
