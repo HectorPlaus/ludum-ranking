@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Result(
     @SerializedName("background_image")
-    val background_image: String,
+    val backgroundImage: String,
     @SerializedName("dominant_color")
-    val dominant_color: String,
+    val dominantColor: String,
     val genres: List<Genre>,
     val id: Int,
     val metacritic: Int,
@@ -14,7 +14,7 @@ data class Result(
     val playtime: Int,
     val released: String,
     @SerializedName("saturated_color")
-    val saturated_color: String,
+    val saturatedColor: String,
     @SerializedName("short_screenshots")
-    val short_screenshots: List<ShortScreenshot>
+    val shortScreenshots: List<ShortScreenshot>
 )
