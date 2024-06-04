@@ -1,9 +1,13 @@
 package com.ninesevenclub.ludumranking.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Genre(
-    val games_count: Int,
+    @SerializedName("games_count")
+    val gamesCount: Int,
     val id: Int,
-    val image_background: String,
+    @SerializedName("image_background")
+    val imageBackground: String,
     val name: String,
     val slug: String
 )
