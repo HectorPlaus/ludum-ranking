@@ -9,11 +9,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.app.Person
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
 
 @Composable
-fun HomeView(
-    paddingValues: PaddingValues
-) {
+fun HomeView(viewModel: LRViewModel, navController: NavHostController, paddingValues: PaddingValues) {
     Column(
         modifier = Modifier
             .fillMaxSize()

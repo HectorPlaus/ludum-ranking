@@ -17,11 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.Person
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
 
 @Composable
-fun DetailView(
-    paddingValues: PaddingValues
-) {
+fun DetailView(viewModel: LRViewModel,navController: NavHostController,paddingValues: PaddingValues) {
     val context = LocalContext.current
     val webIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse("url"))
     Column(
