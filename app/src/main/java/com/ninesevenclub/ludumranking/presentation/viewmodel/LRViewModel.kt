@@ -19,6 +19,7 @@ class LRViewModel @Inject constructor(private val repository: Repository) : View
     private val _gameList = MutableStateFlow(emptyList<GameResponse>())
     val gameList = _gameList.asStateFlow()
 
+    
     fun getGameList() {
         CoroutineScope(Dispatchers.IO).launch {
             val response = repository.getListGames()

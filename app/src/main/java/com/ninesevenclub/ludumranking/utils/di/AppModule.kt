@@ -1,10 +1,13 @@
 package com.ninesevenclub.ludumranking.utils.di
 
+import com.ninesevenclub.ludumranking.data.remote.LRService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -13,10 +16,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://api.rawg.io/api/")
-            .build();
+    fun provideRetrofit(): LRService {
+        return LRService.create()
     }
 
 

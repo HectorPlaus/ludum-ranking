@@ -12,11 +12,30 @@ import com.ninesevenclub.ludumranking.presentation.views.HomeView
 import com.ninesevenclub.ludumranking.presentation.views.SearchView
 
 @Composable
-fun NavManager(navController: NavHostController, paddingValues: PaddingValues, viewModel: LRViewModel
+fun NavManager(
+    navController: NavHostController, paddingValues: PaddingValues, viewModel: LRViewModel
 ) {
     NavHost(navController, startDestination = Routes.HomeView.route) {
-        composable(Routes.HomeView.route){ HomeView(viewModel = viewModel, navController = navController, paddingValues = paddingValues) }
-        composable(Routes.DetailView.route){ DetailView(viewModel = viewModel, navController = navController, paddingValues = paddingValues)}
-        composable(Routes.SearchView.route){ SearchView(viewModel = viewModel, navController = navController, paddingValues = paddingValues)}
+        composable(Routes.HomeView.route) {
+            HomeView(
+                viewModel = viewModel,
+                navController = navController,
+                paddingValues = paddingValues
+            )
+        }
+        composable(Routes.DetailView.route) {
+            DetailView(
+                viewModel = viewModel,
+                navController = navController,
+                paddingValues = paddingValues
+            )
+        }
+        composable(Routes.SearchView.route) {
+            SearchView(
+                viewModel = viewModel,
+                navController = navController,
+                paddingValues = paddingValues
+            )
+        }
     }
 }

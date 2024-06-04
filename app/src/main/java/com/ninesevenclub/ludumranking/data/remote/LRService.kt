@@ -1,6 +1,7 @@
 package com.ninesevenclub.ludumranking.data.remote
 
 import com.ninesevenclub.ludumranking.data.model.GameResponse
+import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
