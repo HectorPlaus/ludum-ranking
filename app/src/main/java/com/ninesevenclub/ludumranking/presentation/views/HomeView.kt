@@ -2,6 +2,7 @@ package com.ninesevenclub.ludumranking.presentation.views
 
 import android.media.Image
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,15 +17,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.Person
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
 import com.ninesevenclub.ludumranking.utils.navigation.Routes
@@ -40,30 +47,41 @@ fun HomeView(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
+            .background(color = Color.Black)
     ) {
         LazyColumn() {
             items(gameList) { game ->
                 //GameCardItem
-                Card(modifier = Modifier.clickable {
 
-                    viewModel.updateSelectedGame(game)
-                    navController.navigate(Routes.DetailView.route)
-                }) {
-                    Image(
-                        painter = rememberImagePainter(game.backgroundImage),
-                        contentDescription = "Game Image",
+                    Card(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                    Text(text = game.name)
+                            .padding(5.dp)
+                            .background(color = Color.Black)
+                            .clickable {viewModel.updateSelectedGame(game)
+                                navController.navigate(Routes.DetailView.route) }) {
+                        Image(
+                            painter = rememberAsyncImagePainter(game.backgroundImage),
+                            contentDescription = "Game Image",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(200.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                        Text(
+                            text = game.name,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.LightGray,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .background(color = Color.Black)
+                                .fillMaxWidth()
+                                .padding(5.dp)
+                        )
+
+                    }
+
 
                 }
-
-
-
             }
         }
     }
-}
