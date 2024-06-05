@@ -25,12 +25,15 @@ class LRViewModel @Inject constructor(private val repository: Repository) : View
     }
 
     private fun getGameList() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = repository.getListGames()
-            withContext(Dispatchers.Main) {
-                if (response.results.isEmpty()) _gameList.value = response.results
-                else Log.e("Error:", "")
+        viewModelScope.launch {
+            try {
+                val response = repository.getListGames()
+                _gameList.value = response.results
+            }catch (e: Exception){
+                Log.e("Error:", e.message.toString())
             }
+
+
         }
     }
 }
