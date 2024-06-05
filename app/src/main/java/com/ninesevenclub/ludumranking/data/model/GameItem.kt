@@ -2,7 +2,7 @@ package com.ninesevenclub.ludumranking.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Result(
+data class GameItem(
     @SerializedName("background_image")
     val backgroundImage: String,
     @SerializedName("dominant_color")

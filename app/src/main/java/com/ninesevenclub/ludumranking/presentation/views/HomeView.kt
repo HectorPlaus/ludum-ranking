@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
+import com.ninesevenclub.ludumranking.utils.navigation.Routes
 
 @Composable
 fun HomeView(
@@ -43,7 +44,11 @@ fun HomeView(
         LazyColumn() {
             items(gameList) { game ->
                 //GameCardItem
-                Card(modifier = Modifier.clickable {  }) {
+                Card(modifier = Modifier.clickable {
+
+                    viewModel.updateSelectedGame(game)
+                    navController.navigate(Routes.DetailView.route)
+                }) {
                     Image(
                         painter = rememberImagePainter(game.backgroundImage),
                         contentDescription = "Game Image",

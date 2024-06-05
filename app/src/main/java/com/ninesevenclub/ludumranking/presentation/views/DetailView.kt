@@ -16,6 +16,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -25,6 +27,8 @@ import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
 
 @Composable
 fun DetailView(viewModel: LRViewModel,navController: NavHostController,paddingValues: PaddingValues) {
+    val selectedGameState by viewModel.selectedGameItem.collectAsState()
+
     val context = LocalContext.current
     val webIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse("url"))
     Column(
@@ -42,12 +46,12 @@ fun DetailView(viewModel: LRViewModel,navController: NavHostController,paddingVa
                         Icons.Rounded.ArrowBack,
                         contentDescription = ""
                     )
-                    Text(text = "title.value")
+                    Text(text = selectedGameState!!.name)
                 }
                 Image(painter = painterResource(id = R.drawable.ic_launcher_foreground), contentDescription = "")
                 Row {
                     Column {
-                        Text(text = "METASCORE")
+                        Text(text = selectedGameState!!.metacritic.toString())
                         Button(onClick = {
                             context.startActivity(webIntent)
                         }) {
