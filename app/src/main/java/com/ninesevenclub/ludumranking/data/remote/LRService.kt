@@ -15,13 +15,4 @@ interface LRService {
     @GET("games")
     suspend fun listGames(@Query("key") apiKey: String = "192d53844b6b46d782e8cc8728ae44ff"): GameResponse
 
-    companion object {
-        private const val BASE_URL = "https://api.rawg.io/api/"
-        fun create(): LRService {
-            val client = OkHttpClient.Builder().build()
-            val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()).client(client).build()
-            return retrofit.create(LRService::class.java)
-        }
-    }
 }
