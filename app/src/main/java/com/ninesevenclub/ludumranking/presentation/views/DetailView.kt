@@ -46,7 +46,6 @@ fun DetailView(
     viewModel: LRViewModel,
     navController: NavHostController
 ) {
-    //val selectedGameState by viewModel.selectedGameItem.collectAsState()
     val selectedGame by viewModel.selectedGame.collectAsState()
 
     val context = LocalContext.current
