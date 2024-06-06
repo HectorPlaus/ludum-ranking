@@ -65,7 +65,8 @@ fun HomeView(
                             .padding(5.dp)
                             .background(color = Color.Black)
                             .clickable {
-                                viewModel.updateSelectedGame(game)
+                                //viewModel.updateSelectedGame(game)
+                                viewModel.getGameDetails(game.id)
                                 navController.navigate(Routes.DetailView.route)
                             }) {
                         Image(

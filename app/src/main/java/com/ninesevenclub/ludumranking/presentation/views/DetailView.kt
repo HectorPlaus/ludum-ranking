@@ -18,10 +18,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -44,16 +46,16 @@ fun DetailView(
     viewModel: LRViewModel,
     navController: NavHostController
 ) {
-    val selectedGameState by viewModel.selectedGameItem.collectAsState()
+    //val selectedGameState by viewModel.selectedGameItem.collectAsState()
+    val selectedGame by viewModel.selectedGame.collectAsState()
 
     val context = LocalContext.current
-    val webIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse("url"))
-    Column(
+    if (selectedGame == null) CircularProgressIndicator()
+    else Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.Black)
     ) {
-        //Image
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -62,22 +64,20 @@ fun DetailView(
                     IconButton(onClick = { navController.navigateUp() }) {
                         Icon(
                             Icons.Rounded.ArrowBack,
-                            contentDescription = "",
+                            contentDescription = "BACK",
                             tint = Color.LightGray
                         )
                     }
                     Text(
-                        text = selectedGameState!!.name,
+                        text = selectedGame!!.name,
                         textAlign = TextAlign.Center,
                         color = Color.LightGray,
                         fontWeight = FontWeight.Bold
                     )
-
-
                 }
                 Image(
-                    painter = rememberAsyncImagePainter(selectedGameState!!.backgroundImage),
-                    contentDescription = ""
+                    painter = rememberAsyncImagePainter(selectedGame!!.backgroundImage),
+                    contentDescription = "BACKGROUND"
                 )
 
                 Row(modifier = Modifier.padding(15.dp)) {
@@ -89,7 +89,7 @@ fun DetailView(
                             fontSize = 22.sp
                         )
                         Button(onClick = {
-                            context.startActivity(webIntent)
+                            context.startActivity(viewModel.webIntent(selectedGame!!.website))
                         }) {
                             Text(text = "Sitio Web")
                         }
@@ -104,16 +104,14 @@ fun DetailView(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = selectedGameState!!.metacritic.toString(),
+                            text = selectedGame!!.metacritic.toString(),
                             color = Color.White,
                             fontSize = 50.sp
                         )
                     }
-
-
                 }
                 Text(
-                    text = "Loremdsubsaghgvjsms gjgls,agjmgv lalsghsga galkghslk hgghsgk dsgdg gh dsfg gh slg shlghgs jdhg dfkjhs s dshg  sdlghl sgh g hgshsk",
+                    text = selectedGame!!.description,
                     color = Color.LightGray
                 )
 

@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(private val apiInterface: LRService) {
     suspend fun getListGames() = apiInterface.listGames()
-
+    suspend fun getGameDetails(id: Int) = apiInterface.getGameDetails(id = id)
 
 
 }
