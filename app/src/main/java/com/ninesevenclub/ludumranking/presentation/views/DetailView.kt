@@ -2,6 +2,7 @@ package com.ninesevenclub.ludumranking.presentation.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,10 +11,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -62,39 +67,47 @@ fun DetailView(
                             tint = Color.LightGray
                         )
                     }
-                    Text(
-                        text = selectedGame!!.name,
-                        textAlign = TextAlign.Center,
-                        color = Color.LightGray,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Column(modifier = Modifier.padding(top = 12.dp)) {
+                        Text(
+                            text = selectedGame!!.name,
+                            textAlign = TextAlign.Center,
+                            color = Color.LightGray,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.Serif
+                        )
+                    }
+
                 }
                 Image(
                     painter = rememberAsyncImagePainter(selectedGame!!.backgroundImage),
                     contentDescription = "BACKGROUND"
                 )
 
-                Row(modifier = Modifier.padding(15.dp)) {
+                Row(modifier = Modifier
+                    .padding(15.dp)
+                    .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                     Column {
                         Text(
                             text = "METASCORE",
                             color = Color.LightGray,
                             fontWeight = FontWeight.Bold,
-                            fontSize = 22.sp
+                            fontSize = 22.sp,
+                            fontFamily = FontFamily.Serif
                         )
+                        Spacer(modifier = Modifier.size(5.dp))
                         Button(onClick = {
                             context.startActivity(viewModel.webIntent(selectedGame!!.website))
-                        }) {
-                            Text(text = "Sitio Web")
+                        }, colors = ButtonDefaults.buttonColors(Color.Gray)) {
+                            Text(text = "Sitio Web",fontFamily = FontFamily.Serif,)
                         }
 
                     }
-                    Spacer(modifier = Modifier.size(70.dp))
                     Box(
                         Modifier
-                            .background(color = Color.Green)
-                            .size(70.dp)
-                            .clip(shape = RoundedCornerShape(10.dp, 10.dp, 0.dp, 0.dp)),
+
+                            .size(80.dp)
+                            .clip(shape = RoundedCornerShape(15.dp))
+                            .background(color = Color(0xFF3BC42F)),
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
@@ -104,10 +117,16 @@ fun DetailView(
                         )
                     }
                 }
-                Text(
-                    text = selectedGame!!.description,
-                    color = Color.LightGray
-                )
+                Column(modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(5.dp)) {
+                    Text(
+                        text = selectedGame!!.description,
+                        color = Color.LightGray,
+                        fontFamily = FontFamily.Serif,
+                    )
+                }
+
 
 
             }

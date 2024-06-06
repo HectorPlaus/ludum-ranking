@@ -11,6 +11,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -19,7 +22,14 @@ fun LRTopBar(
     navToSearch: () -> Unit
 ) {
     TopAppBar(
-        title = { Text(text = "API GAMES") },
+        title = {
+            Text(
+                text = "LUDUM RANKING",
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Serif,
+                textAlign = TextAlign.Center
+            )
+        },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color.Black,
             titleContentColor = Color.White,
