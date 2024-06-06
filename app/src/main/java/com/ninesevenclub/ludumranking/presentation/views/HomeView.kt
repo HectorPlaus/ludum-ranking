@@ -49,7 +49,7 @@ fun HomeView(
         topBar = {
             LRTopBar(
                 navToSettings = { /*TODO*/ },
-                navToSearch = {}
+                navToSearch = {navController.navigate(Routes.SearchView.route)}
             )
         }
     ) { paddingValues ->
