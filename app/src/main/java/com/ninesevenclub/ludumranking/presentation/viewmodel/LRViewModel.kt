@@ -18,6 +18,7 @@ class LRViewModel @Inject constructor(private val repository: Repository) : View
 
     private val _selectedGameItem = MutableStateFlow<GameItem?>(null)
     val selectedGameItem = _selectedGameItem.asStateFlow()
+
     init {
         getGameList()
     }
@@ -31,7 +32,7 @@ class LRViewModel @Inject constructor(private val repository: Repository) : View
             try {
                 val response = repository.getListGames()
                 _gameList.value = response.results
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.e("Error:", e.message.toString())
             }
 

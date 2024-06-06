@@ -7,6 +7,6 @@ import androidx.navigation.NavHostController
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
 
 @Composable
-fun SearchView(viewModel: LRViewModel, navController: NavHostController, paddingValues: PaddingValues){
+fun SearchView(viewModel: LRViewModel) {
 
 }

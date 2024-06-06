@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,31 +35,39 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
+import com.ninesevenclub.ludumranking.presentation.views.components.LRTopBar
 import com.ninesevenclub.ludumranking.utils.navigation.Routes
 
 @Composable
 fun HomeView(
     viewModel: LRViewModel,
-    navController: NavHostController,
-    paddingValues: PaddingValues
+    navController: NavHostController
 ) {
     val gameList by viewModel.gameList.collectAsState()
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .background(color = Color.Black)
-    ) {
-        LazyColumn() {
-            items(gameList) { game ->
-                //GameCardItem
-
+    Scaffold(
+        topBar = {
+            LRTopBar(
+                navToSettings = { /*TODO*/ },
+                navToSearch = {}
+            )
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .background(color = Color.Black)
+        ) {
+            LazyColumn() {
+                items(gameList) { game ->
                     Card(
                         modifier = Modifier
                             .padding(5.dp)
                             .background(color = Color.Black)
-                            .clickable {viewModel.updateSelectedGame(game)
-                                navController.navigate(Routes.DetailView.route) }) {
+                            .clickable {
+                                viewModel.updateSelectedGame(game)
+                                navController.navigate(Routes.DetailView.route)
+                            }) {
                         Image(
                             painter = rememberAsyncImagePainter(game.backgroundImage),
                             contentDescription = "Game Image",
@@ -84,4 +93,6 @@ fun HomeView(
                 }
             }
         }
+
     }
+}

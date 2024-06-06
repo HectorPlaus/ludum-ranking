@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.ninesevenclub.ludumranking.presentation.ui.theme.LudumRanKingTheme
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
@@ -27,21 +29,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LudumRanKingTheme(darkTheme = false) {
-                val navController = rememberNavController()
-                Scaffold(
-                    topBar = {
-                        LRTopBar(
-                            navToSettings = {},
-                            navToSearch = {}
-                        )
-                    }
-                ) { paddingValues ->
-                    NavManager(
-                        navController = navController,
-                        paddingValues = paddingValues,
-                        viewModel = viewModel
-                    )
-                }
+                NavManager(viewModel = viewModel)
             }
         }
     }

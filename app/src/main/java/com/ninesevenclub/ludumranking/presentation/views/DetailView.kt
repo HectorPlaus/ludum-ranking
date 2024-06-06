@@ -42,8 +42,7 @@ import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
 @Composable
 fun DetailView(
     viewModel: LRViewModel,
-    navController: NavHostController,
-    paddingValues: PaddingValues
+    navController: NavHostController
 ) {
     val selectedGameState by viewModel.selectedGameItem.collectAsState()
 
@@ -52,7 +51,6 @@ fun DetailView(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(paddingValues)
             .background(color = Color.Black)
     ) {
         //Image
