@@ -26,11 +26,11 @@ fun LRTopBar(
             navigationIconContentColor = Color.White,
             actionIconContentColor = Color.White
         ),
-        navigationIcon = {
+        /*navigationIcon = {
             IconButton(onClick = { navToSettings() }) {
                 Icon(imageVector = Icons.Filled.Settings, contentDescription = "SETTINGS")
             }
-        },
+        },*/
         actions = {
             IconButton(onClick = { navToSearch() }) {
                 Icon(imageVector = Icons.Filled.Search, contentDescription = "SEARCH")
