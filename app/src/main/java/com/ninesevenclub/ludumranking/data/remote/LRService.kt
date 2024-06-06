@@ -15,4 +15,6 @@ interface LRService {
     @GET("games")
     suspend fun listGames(@Query("key") apiKey: String = "192d53844b6b46d782e8cc8728ae44ff"): GameResponse
 
+   // @GET("games/{id}")
+    //suspend fun getGameDetails(@Qu)
 }

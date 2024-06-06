@@ -13,7 +13,7 @@ import com.ninesevenclub.ludumranking.presentation.views.HomeView
 import com.ninesevenclub.ludumranking.presentation.views.SearchView
 
 @Composable
-fun NavManager(paddingValues: PaddingValues, viewModel: LRViewModel) {
+fun NavManager(viewModel: LRViewModel) {
     val navController = rememberNavController()
     NavHost(navController, startDestination = Routes.HomeView.route) {
         composable(Routes.HomeView.route) {
