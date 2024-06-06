@@ -2,6 +2,7 @@ package com.ninesevenclub.ludumranking.presentation.views
 
 import android.annotation.SuppressLint
 import android.widget.SearchView
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -27,14 +29,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.ninesevenclub.ludumranking.presentation.viewmodel.LRViewModel
+import com.ninesevenclub.ludumranking.utils.navigation.NavManager
+import com.ninesevenclub.ludumranking.utils.navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchView(viewModel: LRViewModel) {
+fun SearchView(viewModel: LRViewModel, navController: NavHostController) {
     val searchText by viewModel.searchText.collectAsState()
     val gameSearchList by viewModel.gameList.collectAsState()
 
-    Scaffold (
+    Scaffold(
         contentColor = Color.White,
         containerColor = Color.Black
     ) { innerPadding ->
@@ -47,7 +51,11 @@ fun SearchView(viewModel: LRViewModel) {
             TextField(
                 value = searchText,
                 onValueChange = { viewModel.onSearchTextChange(it) },
-                label = { Text("Search") }, // Optional label
+                label = {
+                    if (searchText.isEmpty()) {
+                        Text("Search")
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -67,7 +75,8 @@ fun SearchView(viewModel: LRViewModel) {
                         }
                     }
                 },
-                singleLine = true, // For a single-line search bar
+                singleLine = true,
+                colors = TextFieldDefaults.textFieldColors(focusedLabelColor = Color.Transparent)
             )
 
             // Display Search Results
@@ -77,7 +86,8 @@ fun SearchView(viewModel: LRViewModel) {
                         text = game.name,
                         modifier = Modifier
                             .padding(8.dp)
-                            .
+                            .clickable
+                            { navController.navigate(Routes.DetailView.createRoute(game.id)) }
                     )
                 }
             }

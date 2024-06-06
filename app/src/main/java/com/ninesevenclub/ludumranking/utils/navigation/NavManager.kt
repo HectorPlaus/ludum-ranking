@@ -30,7 +30,8 @@ fun NavManager(viewModel: LRViewModel) {
         }
         composable(Routes.SearchView.route) {
             SearchView(
-                viewModel = viewModel
+                viewModel = viewModel,
+                navController = navController
             )
         }
     }
