@@ -53,28 +53,29 @@ fun DetailView(
     else Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Black)
+            .background(color = Color.Black).padding(top = 10.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
             Column() {
-                Row {
+                Row (){
                     IconButton(onClick = { navController.navigateUp() }) {
                         Icon(
                             Icons.Rounded.ArrowBack,
                             contentDescription = "BACK",
-                            tint = Color.LightGray
+                            tint = Color.LightGray,
+                            modifier = Modifier.size(30.dp)
                         )
                     }
-                    Column(modifier = Modifier.padding(top = 12.dp)) {
+                    Column(modifier = Modifier.padding(top = 10.dp)) {
                         Text(
                             text = selectedGame!!.name,
                             textAlign = TextAlign.Center,
                             color = Color.LightGray,
                             fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.Serif
-                        )
+                            fontFamily = FontFamily.Serif,
+                            fontSize = 20.sp                        )
                     }
 
                 }
@@ -106,7 +107,7 @@ fun DetailView(
                         Modifier
 
                             .size(80.dp)
-                            .clip(shape = RoundedCornerShape(15.dp))
+                            .clip(shape = RoundedCornerShape(12.dp))
                             .background(color = Color(0xFF3BC42F)),
                         contentAlignment = Alignment.Center
                     ) {
@@ -124,6 +125,7 @@ fun DetailView(
                         text = selectedGame!!.description,
                         color = Color.LightGray,
                         fontFamily = FontFamily.Serif,
+                        fontWeight = FontWeight.ExtraBold
                     )
                 }
 
