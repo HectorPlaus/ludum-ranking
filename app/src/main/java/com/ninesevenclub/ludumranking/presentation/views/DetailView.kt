@@ -1,5 +1,6 @@
 package com.ninesevenclub.ludumranking.presentation.views
 
+import android.text.Html
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -47,7 +48,7 @@ fun DetailView(
     val selectedGame by viewModel.selectedGame.collectAsState()
 
     val context = LocalContext.current
-    if (selectedGame == null) Box(modifier = Modifier.fillMaxSize()) {
+    if (selectedGame == null) Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         CircularProgressIndicator()
     }
     else Column(
@@ -117,12 +118,14 @@ fun DetailView(
                             fontSize = 50.sp
                         )
                     }
+
                 }
+
                 Column(modifier = Modifier
                     .verticalScroll(rememberScrollState())
                     .padding(5.dp)) {
                     Text(
-                        text = selectedGame!!.description,
+                        text = Html.fromHtml(selectedGame!!.description).toString(),
                         color = Color.LightGray,
                         fontFamily = FontFamily.Serif,
                         fontWeight = FontWeight.ExtraBold
