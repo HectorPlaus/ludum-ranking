@@ -14,11 +14,11 @@ import retrofit2.http.Query
 interface LRService {
    
     @GET("games")
-    suspend fun listGames(@Query("key") apiKey: String = "API_KEY"): GameResponse
+    suspend fun listGames(@Query("key") apiKey: String = API_KEY): GameResponse
 
     @GET("games/{id}")
     suspend fun getGameDetails(
         @Path("id") id: Int,
-        @Query("key") apiKey: String = "192d53844b6b46d782e8cc8728ae44ff"
+        @Query("key") apiKey: String = API_KEY
     ): GamesDetailResponse
 }
